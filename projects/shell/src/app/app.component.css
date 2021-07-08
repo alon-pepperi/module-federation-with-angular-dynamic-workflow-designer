@@ -2,3 +2,19 @@
 /* Hallo */
 
 .x { }
+
+
+.sub-addons-cont{
+    display: table;
+}
+.sub-addons-cont-sub{
+  border: 1px dashed;
+  margin: 1rem;
+  padding: 1rem;
+  min-height: 100px;
+  min-width: 900px;
+}
+
+::ng-deep pep-button img {
+  max-width: 400px;
+}

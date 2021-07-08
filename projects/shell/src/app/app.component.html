@@ -1,19 +1,42 @@
-<ul>
-    <li><img src="../assets/angular.png" width="50"></li>
-    <li><a href="#">Plugin-based Workflow Designer</a></li>
-    <li><a (click)="toggle()">Toggle Config</a></li>
-</ul>
+<div class="addon-page-container">
+  <pep-top-bar [title]="'Sub Addons\' Addon'">
+    <div header-start-content>
+      <pep-button class="spacing-element" [value]="'Load ' + p.displayName" *ngFor="let p of buttonPlugins" (click)="addSubAddonToPage(p)"></pep-button>
+    </div>
+    <div header-end-content>
+      <pep-button class="strong spacing-element" [value]="'Toggle Menu Config'" (click)="toggle()"></pep-button>
+     <pep-menu class="pull-right flip" [xPosition]="'before'" [sizeType]="'md'" [styleType]="'weak'"
+                [items]="menuItems" (menuItemClick)="onMenuItemClicked($event)"
+    ></pep-menu>
+    </div>
+  </pep-top-bar>
 
-<div class="vertical-menu">
-    <a href="#" class="active">Tasks</a>
-    <a *ngFor="let p of plugins" (click)="add(p)">Add {{p.displayName}}</a>
+  <div class="main-content ">
+    <div class="content">
+      <app-config *ngIf="showConfig">
+      </app-config>
+      <div class="sub-addons-cont" style="">
+         <ng-container *ngFor="let p of workflow; let last = last">
+           <div class="sub-addons-cont-sub">
+            <addon-proxy [options]="p"></addon-proxy>
+             <i *ngIf="!last" class="arrow right" style=""></i>
+           </div>
+         </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
 
-<ng-container *ngFor="let p of workflow; let last = last">
-    <plugin-proxy [options]="p"></plugin-proxy>
-    <i *ngIf="!last" class="arrow right" style=""></i>
-</ng-container> 
+<ng-template #dialogTemplate>
+  <pep-dialog class="dialog-textarea-container" [title]="'Addon In Dialog'">
+    <ng-container  pep-dialog-content>
+        <addon-proxy [options]="dialogAddon"></addon-proxy>
+      </ng-container>
+    <div pep-dialog-actions class="spacing-element-negative">
+            <button mat-button (click)="closeDialog()" class="spacing-element pep-button md weak">
+                {{ 'Close' | translate }}
+            </button>
 
-<p style="clear:both">&nbsp;</p>
-<p>&nbsp;</p>
-<app-config *ngIf="showConfig"></app-config>
+    </div>
+  </pep-dialog>
+</ng-template>

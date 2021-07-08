@@ -3,15 +3,21 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'mfe2-analyze',
     template: `
-        <div class="task">
-            <img src="http://localhost:3001/assets/analyze.png">
-            <p>Analyze</p>
-        </div>
-    `
+      <div class="embedded-showcase">
+
+  <div class="my-component-wrapper">
+    <app-my-component [counter]="counter" (componentClick)="handleOnClick($event)"></app-my-component>
+  </div>
+</div>
+
+    `,
+    styles: [`img { max-width: 100px;}`]
 })
 
-export class AnalyzeComponent implements OnInit {
-    constructor() { }
+export class AnalyzeComponent  {
+  public counter = 21;
 
-    ngOnInit() { }
+  public handleOnClick(stateCounter: number) {
+    this.counter++;
+  }
 }

@@ -1,34 +1,24 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-//import { loadRemoteModule } from '@angular-architects/module-federation';
-import { ConfigComponent } from './config/config.component';
+import { AddonComponent } from './app.component';
 
-export const APP_ROUTES: Routes = [
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { EmptyRouteComponent } from './empty-route/empty-route.component';
+
+
+const routes: Routes = [{
+    path: 'settings/:addon_uuid',
+    component: AddonComponent
+
+},
     {
-      path: '',
-      component: HomeComponent,
-      pathMatch: 'full'
-    },
-    {
-      path: 'config',
-      component: ConfigComponent
+        path: '**',
+        component: EmptyRouteComponent
     }
-    // {
-    //   path: 'flights',
-    //   loadChildren: () => loadRemoteModule({
-    //       remoteEntry: 'http://localhost:3000/remoteEntry.js',
-    //       remoteName: 'mfe1',
-    //       exposedModule: 'Module'
-    //     })
-    //     .then(m => m.FlightsModule)
-    // },
-    // {
-    //   path: 'bookings',
-    //   loadChildren: () => loadRemoteModule({
-    //       remoteEntry: 'http://localhost:3001/remoteEntry.js',
-    //       remoteName: 'mfe2',
-    //       exposedModule: 'Module'
-    //     })
-    //     .then(m => m.BookingsModule)
-    // },
+
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+    exports: [RouterModule]
+})
+export class AddonRoutingModule { }

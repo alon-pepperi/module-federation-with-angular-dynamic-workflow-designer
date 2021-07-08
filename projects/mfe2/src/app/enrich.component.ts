@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
             <img src="http://localhost:3001/assets/enrich.png">
             <p>Enrich</p>
         </div>
-    `
+    `,
+    styles: [`img { max-width: 100px;}`]
 })
 
 export class EnrichComponent implements OnInit {

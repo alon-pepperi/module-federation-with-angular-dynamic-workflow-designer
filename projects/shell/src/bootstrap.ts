@@ -1,11 +1,28 @@
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+// import('./bootstrap');
+
+import { enableProdMode, NgZone } from '@angular/core';
+
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
+// import { Router } from '@angular/router';
+import { ɵAnimationEngine as AnimationEngine } from '@angular/animations/browser';
 
-if (environment.production) {
-  enableProdMode();
-}
+import { singleSpaAngular, getSingleSpaExtraProviders } from 'single-spa-angular';
+import { environment } from './environments/environment';
+import { singleSpaPropsSubject } from './single-spa/single-spa-props';
+import { AddonModule } from './app/app.module';
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+const   lifecycles = singleSpaAngular({
+  bootstrapFunction: singleSpaProps => {
+      singleSpaPropsSubject.next(singleSpaProps);
+      return platformBrowserDynamic(getSingleSpaExtraProviders()).bootstrapModule(AddonModule);
+  },
+  template: '<addon-root />',
+  Router: null,
+  NgZone,
+  AnimationEngine,
+});
+
+export const bootstrap = lifecycles.bootstrap;
+export const mount = lifecycles.mount;
+export const unmount = lifecycles.unmount;
+export const update = lifecycles.update;

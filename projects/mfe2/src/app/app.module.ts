@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { EnrichComponent } from './enrich.component';
 import { AnalyzeComponent } from './analyze.component';
+import { MyComponentWrapperComponent } from './my-react-component/MyReactComponentWrapper';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { AnalyzeComponent } from './analyze.component';
   declarations: [
     AppComponent,
     EnrichComponent,
-    AnalyzeComponent
+    AnalyzeComponent,
+    MyComponentWrapperComponent
   ],
   providers: [],
   bootstrap: [

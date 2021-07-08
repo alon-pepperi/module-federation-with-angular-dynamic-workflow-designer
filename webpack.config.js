@@ -14,8 +14,8 @@ const shellConfig = {
   },
   devServer: {
     contentBase: path.join(__dirname, "dist/shell"),
-    port: 5000
-  },  
+    port: 4400
+  },
   module: {
     rules: [
       { test: /\.ts$/, loader: "@ngtools/webpack" }
@@ -37,7 +37,7 @@ const shellConfig = {
     }),
     new CopyPlugin([
       { from: 'projects/shell/src/assets', to: 'assets' },
-    ]),    
+    ]),
     new HtmlWebpackPlugin({
       template: "./projects/shell/src/index.html"
     })
@@ -59,7 +59,7 @@ const mfe1Config = {
   devServer: {
     contentBase: path.join(__dirname, "dist/mfe1"),
     port: 3000
-  },  
+  },
   module: {
     rules: [
       { test: /\.ts$/, loader: "@ngtools/webpack" }
@@ -87,7 +87,7 @@ const mfe1Config = {
     }),
     new CopyPlugin([
       { from: 'projects/mfe1/src/assets', to: 'assets' },
-    ]),    
+    ]),
     new HtmlWebpackPlugin({
       template: "./projects/mfe1/src/index.html"
     })
@@ -109,7 +109,7 @@ const mfe2Config = {
   devServer: {
     contentBase: path.join(__dirname, "dist/mfe2"),
     port: 3000
-  },  
+  },
   module: {
     rules: [
       { test: /\.ts$/, loader: "@ngtools/webpack" }
@@ -137,7 +137,7 @@ const mfe2Config = {
     }),
     new CopyPlugin([
       { from: 'projects/mfe2/src/assets', to: 'assets' },
-    ]),    
+    ]),
     new HtmlWebpackPlugin({
       template: "./projects/mfe2/src/index.html"
     })

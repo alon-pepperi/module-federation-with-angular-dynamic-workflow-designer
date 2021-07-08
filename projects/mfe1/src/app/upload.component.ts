@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { PepMenuItem } from '@pepperi-addons/ngx-lib/menu';
 
 @Component({
     selector: 'mfe1-upload',
     template: `
-        <div class="task">
-            <img src="http://localhost:3000/assets/upload.png">
-            <p>Upload</p>
-        </div>
-    `
+
+      <div>Remote Component Works!</div>
+      <div class="my-component-wrapper">
+    <!-- <app-my-component [counter]="counter" (componentClick)="handleOnClick($event)"></app-my-component> -->
+  </div>
+
+    `,
+    styles: []
 })
 
-export class UploadComponent implements OnInit {
-    constructor() { }
+export class UploadComponent  {
+  public counter = 21;
 
-    ngOnInit() { }
+  public handleOnClick(stateCounter: number) {
+    this.counter++;
+  }
 }

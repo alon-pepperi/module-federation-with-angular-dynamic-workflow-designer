@@ -1,4 +1,5 @@
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const webpack = require('webpack');
 
 module.exports = {
   output: {
@@ -9,6 +10,9 @@ module.exports = {
     runtimeChunk: false
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new ModuleFederationPlugin({
       name: "mfe2",
       filename: "remoteEntry.js",
@@ -17,8 +21,8 @@ module.exports = {
         './Enrich': './projects/mfe2/src/app/enrich.component.ts'
       },
       shared: {
-        "@angular/core": { singleton: true, strictVersion: true }, 
-        "@angular/common": { singleton: true, strictVersion: true }, 
+        "@angular/core": { singleton: true, strictVersion: true },
+        "@angular/common": { singleton: true, strictVersion: true },
         "@angular/router": { singleton: true, strictVersion: true }
       }
     }),
